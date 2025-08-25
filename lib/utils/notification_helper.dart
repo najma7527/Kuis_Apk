@@ -41,7 +41,7 @@ class NotificationHelper {
       title = "🎉 LUAR BIASA!";
       message = "Skor: $score/$total ($percentage%)";
       color = Colors.green;
-    } else if (percentage >= 60) {
+    } else if (percentage >= 70) {
       title = "👍 BAGUS!";
       message = "Skor: $score/$total ($percentage%)";
       color = Colors.blue;

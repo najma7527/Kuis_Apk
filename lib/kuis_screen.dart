@@ -44,9 +44,8 @@ class _QuizScreenState extends State<QuizScreen> {
     setState(() {
       selectedAnswerIndex = index;
 
-      // Logika penilaian - TANPA sound effect
       if (index == currentCorrectIndex) {
-        score++; // Ini yang menambah skor
+        score++;
         NotificationHelper.showCorrectNotification(
           context,
           currentOptions[currentCorrectIndex],
