@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:audioplayers/audioplayers.dart';
 import 'kuis_data.dart';
 import 'utils/quiz_shuffler.dart';
 import 'utils/notification_helper.dart';
@@ -21,7 +20,6 @@ class _QuizScreenState extends State<QuizScreen> {
   bool showResult = false;
   List<String> currentOptions = [];
   int currentCorrectIndex = 0;
-  // final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   void initState() {
@@ -42,36 +40,23 @@ class _QuizScreenState extends State<QuizScreen> {
     });
   }
 
-  // Future<void> _playSound(bool isCorrect) async {
-  //   try {
-  //     if (isCorrect) {
-  //       await _audioPlayer.play(AssetSource('sounds/correct.mp3'));
-  //     } else {
-  //       await _audioPlayer.play(AssetSource('sounds/wrong.mp3'));
-  //     }
-  //   } catch (e) {
-  //     print('Error playing sound: $e');
-  //   }
-  // }
-
   void answerQuestion(int index) async {
     setState(() {
       selectedAnswerIndex = index;
 
-      // if (index == currentCorrectIndex) {
-      //   score++;
-      //   _playSound(true);
-      //   NotificationHelper.showCorrectNotification(
-      //     context,
-      //     currentOptions[currentCorrectIndex],
-      //   );
-      // } else {
-      //   _playSound(false);
-      //   NotificationHelper.showWrongNotification(
-      //     context,
-      //     currentOptions[currentCorrectIndex],
-      //   );
-      // }
+      // Logika penilaian - TANPA sound effect
+      if (index == currentCorrectIndex) {
+        score++; // Ini yang menambah skor
+        NotificationHelper.showCorrectNotification(
+          context,
+          currentOptions[currentCorrectIndex],
+        );
+      } else {
+        NotificationHelper.showWrongNotification(
+          context,
+          currentOptions[currentCorrectIndex],
+        );
+      }
     });
 
     Future.delayed(const Duration(milliseconds: 1800), () {
@@ -119,11 +104,6 @@ class _QuizScreenState extends State<QuizScreen> {
     return Icons.circle_outlined;
   }
 
-  @override
-  // void dispose() {
-  //   _audioPlayer.dispose();
-  //   super.dispose();
-  // }
   @override
   Widget build(BuildContext context) {
     if (showResult) {
@@ -309,7 +289,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ),
                     Text(
-                      "$score",
+                      "$score", // Sekarang akan menampilkan skor yang benar
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 24,
