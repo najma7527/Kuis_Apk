@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'kuis_screen.dart';
 import 'kuis_data.dart';
+import 'screens/nama_input_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -92,36 +93,39 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 50),
 
-              _buildGradientButton(
-                context: context,
-                text: "MULAI KUIS",
+              ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => QuizScreen(questions: questions),
+                      builder: (context) => NameInputScreen(
+                        // PERUBAHAN DI SINI
+                        questions: questions,
+                        isQuickQuiz: false,
+                      ),
                     ),
                   );
                 },
-                colors: const [Color(0xFF00B4DB), Color(0xFF0083B0)],
+                child: const Text("Mulai Kuis"),
               ),
 
               const SizedBox(height: 20),
 
-              _buildGradientButton(
-                context: context,
-                text: "KUIS CEPAT (5 SOAL)",
+              ElevatedButton(
                 onPressed: () {
                   final randomQuestions = getRandomQuestions(5);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          QuizScreen(questions: randomQuestions),
+                      builder: (context) => NameInputScreen(
+                        // PERUBAHAN DI SINI
+                        questions: randomQuestions,
+                        isQuickQuiz: true,
+                      ),
                     ),
                   );
                 },
-                colors: const [Color(0xFF667EEA), Color(0xFF764BA2)],
+                child: const Text("Kuis Cepat (5 Soal)"),
               ),
             ],
           ),

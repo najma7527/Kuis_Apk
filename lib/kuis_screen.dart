@@ -6,8 +6,13 @@ import 'utils/notification_helper.dart';
 
 class QuizScreen extends StatefulWidget {
   final List<Question> questions;
+  final String userName;
 
-  const QuizScreen({super.key, required this.questions});
+  const QuizScreen({
+    super.key,
+    required this.questions,
+    this.userName = 'Pemain',
+  });
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -49,11 +54,13 @@ class _QuizScreenState extends State<QuizScreen> {
         NotificationHelper.showCorrectNotification(
           context,
           currentOptions[currentCorrectIndex],
+          widget.userName,
         );
       } else {
         NotificationHelper.showWrongNotification(
           context,
           currentOptions[currentCorrectIndex],
+          widget.userName,
         );
       }
     });
@@ -70,6 +77,7 @@ class _QuizScreenState extends State<QuizScreen> {
           context,
           score,
           widget.questions.length,
+          widget.userName,
         );
 
         Future.delayed(const Duration(milliseconds: 1000), () {

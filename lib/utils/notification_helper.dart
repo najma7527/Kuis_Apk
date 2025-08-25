@@ -4,11 +4,12 @@ class NotificationHelper {
   static void showCorrectNotification(
     BuildContext context,
     String correctAnswer,
+    String userName,
   ) {
     _showNotification(
       context,
       "✅ BENAR!",
-      "Jawaban tepat!",
+      "$userName kamu menjawab dengan tepat!",
       Colors.green,
       Icons.check_circle,
     );
@@ -17,11 +18,12 @@ class NotificationHelper {
   static void showWrongNotification(
     BuildContext context,
     String correctAnswer,
+    String userName,
   ) {
     _showNotification(
       context,
       "❌ SALAH",
-      "Jawaban benar: $correctAnswer",
+      "$userName, jawaban benar: $correctAnswer , ayo belajar lebuh keras lagi",
       Colors.red,
       Icons.error,
     );
@@ -31,6 +33,7 @@ class NotificationHelper {
     BuildContext context,
     int score,
     int total,
+    String userName,
   ) {
     final percentage = (score / total * 100).round();
     String title;
@@ -38,15 +41,15 @@ class NotificationHelper {
     Color color;
 
     if (percentage >= 80) {
-      title = "🎉 LUAR BIASA!";
+      title = "🎉 $userName kamu LUAR BIASA! ";
       message = "Skor: $score/$total ($percentage%)";
       color = Colors.green;
     } else if (percentage >= 70) {
-      title = "👍 BAGUS!";
+      title = "👍 $userName KAMU MENJAWAB DENGAN BAGUS!";
       message = "Skor: $score/$total ($percentage%)";
       color = Colors.blue;
     } else {
-      title = "💪 TERUS COBA!";
+      title = "💪 $userName AYO TERUS COBA!";
       message = "Skor: $score/$total ($percentage%)";
       color = Colors.orange;
     }
