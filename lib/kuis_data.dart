@@ -1,79 +1,79 @@
-// BANK SOAL KUIS - SIMPAN SEMUA PERTANYAAN DI SINI
 class Question {
   final String questionText;
   final List<String> options;
   final int correctAnswerIndex;
+  final String category;
 
   Question({
     required this.questionText,
     required this.options,
     required this.correctAnswerIndex,
+    this.category = "Umum",
   });
+
+  List<String> getShuffledOptions() {
+    final shuffled = List<String>.from(options);
+    shuffled.shuffle();
+    return shuffled;
+  }
+
+  int getCorrectIndexAfterShuffle(List<String> shuffledOptions) {
+    return shuffledOptions.indexOf(options[correctAnswerIndex]);
+  }
 }
 
-// KUMPULAN SOAL KUIS
 List<Question> questions = [
-  // Soal Matematika
   Question(
     questionText: "2 + 2 × 2 = ?",
     options: ["6", "8", "4", "10"],
     correctAnswerIndex: 0,
+    category: "Matematika",
   ),
   Question(
     questionText: "Apa hasil dari 5²?",
-    options: ["25", "10", "15", "20"],
-    correctAnswerIndex: 0,
+    options: ["10", "25", "15", "20"],
+    correctAnswerIndex: 1,
+    category: "Matematika",
   ),
-  Question(
-    questionText: "Berapa ¼ dari 100?",
-    options: ["25", "50", "75", "100"],
-    correctAnswerIndex: 0,
-  ),
-
-  // Soal Umum
   Question(
     questionText: "Apa ibu kota Indonesia?",
-    options: ["Jakarta", "Bandung", "Surabaya", "Medan"],
-    correctAnswerIndex: 0,
+    options: ["Bandung", "Jakarta", "Surabaya", "Medan"],
+    correctAnswerIndex: 1,
+    category: "Geografi",
   ),
   Question(
     questionText: "Siapa presiden pertama Indonesia?",
-    options: ["Soekarno", "Soeharto", "Habibie", "Megawati"],
-    correctAnswerIndex: 0,
+    options: ["Soeharto", "Habibie", "Soekarno", "Megawati"],
+    correctAnswerIndex: 2,
+    category: "Sejarah",
+  ),
+  Question(
+    questionText: "Planet terdekat dari Matahari?",
+    options: ["Venus", "Bumi", "Merkurius", "Mars"],
+    correctAnswerIndex: 2,
+    category: "Sains",
+  ),
+  Question(
+    questionText: "What is the capital of France?",
+    options: ["London", "Berlin", "Paris", "Madrid"],
+    correctAnswerIndex: 2,
+    category: "Bahasa",
+  ),
+  Question(
+    questionText: "Berapa ¼ dari 100?",
+    options: ["50", "25", "75", "100"],
+    correctAnswerIndex: 1,
+    category: "Matematika",
   ),
   Question(
     questionText: "Bulan apa Indonesia merdeka?",
-    options: ["Agustus", "Juni", "April", "Desember"],
-    correctAnswerIndex: 0,
-  ),
-
-  // Soal Bahasa Inggris
-  Question(
-    questionText: "What is the capital of France?",
-    options: ["Paris", "London", "Berlin", "Madrid"],
-    correctAnswerIndex: 0,
-  ),
-  Question(
-    questionText: "Synonym of 'happy'?",
-    options: ["Joyful", "Sad", "Angry", "Tired"],
-    correctAnswerIndex: 0,
-  ),
-
-  // Soal Sains
-  Question(
-    questionText: "Planet terdekat dari Matahari?",
-    options: ["Merkurius", "Venus", "Bumi", "Mars"],
-    correctAnswerIndex: 0,
-  ),
-  Question(
-    questionText: "Air terdiri dari unsur...",
-    options: ["H₂O", "O₂", "CO₂", "N₂"],
-    correctAnswerIndex: 0,
+    options: ["Juni", "Agustus", "April", "Desember"],
+    correctAnswerIndex: 1,
+    category: "Sejarah",
   ),
 ];
 
-// Fungsi untuk mendapatkan soal acak (opsional)
 List<Question> getRandomQuestions(int count) {
-  questions.shuffle(); // Acak urutan soal
+  questions.shuffle();
   return questions.take(count).toList();
 }
