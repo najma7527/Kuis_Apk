@@ -51,7 +51,6 @@ class _NameInputScreenState extends State<NameInputScreen> {
     if (_formKey.currentState!.validate()) {
       final userName = _nameController.text.trim();
 
-      // Save name untuk下次使用
       try {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('userName', userName);
@@ -263,7 +262,7 @@ class _NameInputScreenState extends State<NameInputScreen> {
                   child: Text(
                     'Lewati dan main sebagai "Pemain"',
                     style: GoogleFonts.poppins(
-                      color: Colors.blue[300],
+                      color: const Color.fromARGB(255, 71, 180, 253),
                       fontSize: 14,
                     ),
                   ),

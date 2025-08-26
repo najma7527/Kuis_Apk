@@ -43,7 +43,11 @@ class HomeScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [Color(0xFF1A3B6C), Color(0xFF0A1E3C), Color(0xFF051224)],
+            colors: [
+              Color.fromRGBO(26, 59, 108, 1),
+              Color(0xFF0A1E3C),
+              Color(0xFF051224),
+            ],
           ),
         ),
         child: Center(
@@ -106,6 +110,20 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(171, 26, 8, 187),
+                  shadowColor: const Color.fromARGB(134, 22, 20, 163),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      12,
+                    ), // bikin rounded corner
+                  ),
+                ),
                 child: const Text("Mulai Kuis"),
               ),
 
@@ -118,13 +136,29 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => NameInputScreen(
-                        // PERUBAHAN DI SINI
                         questions: randomQuestions,
                         isQuickQuiz: true,
                       ),
                     ),
                   );
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(171, 26, 8, 187),
+                  shadowColor: const Color.fromARGB(
+                    134,
+                    22,
+                    20,
+                    163,
+                  ), // warna background button
+                  foregroundColor: Colors.white, // warna teks/icon
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
                 child: const Text("Kuis Cepat (5 Soal)"),
               ),
             ],
