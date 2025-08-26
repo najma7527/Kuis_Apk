@@ -415,7 +415,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 const SizedBox(height: 30),
 
                 Text(
-                  _getResultMessage(percentage),
+                  _getResultMessage(percentage, widget.userName),
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     color: Colors.blue[100],
@@ -473,13 +473,13 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  String _getResultMessage(int percentage) {
+  String _getResultMessage(int percentage, String userName) {
     if (percentage >= 90)
-      return "Luar biasa! Kamu benar-benar menguasai materi! 🎯";
+      return "Luar biasa! $userName Kamu benar-benar menguasai materi! 🎯";
     if (percentage >= 75) return "Hebat! Hasil yang sangat memuaskan! ⭐";
     if (percentage >= 60)
-      return "Bagus! Tingkatkan lagi untuk hasil yang lebih baik! 👍";
+      return "Bagus! semangat $userName! ayo belajar lagi untuk hasil yang lebih baik! 👍";
     if (percentage >= 40) return "Lumayan! Terus belajar dan berlatih! 📚";
-    return "Jangan menyerah! Setiap kegagalan adalah pelajaran! 💪";
+    return "Jangan menyerah $userName! Setiap kegagalan adalah pelajaran yang menjadikan kamu lebih baik! 💪";
   }
 }
