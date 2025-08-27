@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'kuis_data.dart';
 import 'utils/quiz_shuffler.dart';
 import 'utils/notification_helper.dart';
@@ -25,10 +26,12 @@ class _QuizScreenState extends State<QuizScreen> {
   bool showResult = false;
   List<String> currentOptions = [];
   int currentCorrectIndex = 0;
+  DateTime? _quizStartTime;
 
   @override
   void initState() {
     super.initState();
+    _quizStartTime = DateTime.now();
     _loadCurrentQuestion();
   }
 
@@ -43,6 +46,47 @@ class _QuizScreenState extends State<QuizScreen> {
       currentOptions = shuffledOptions;
       currentCorrectIndex = correctIndex;
     });
+  }
+
+  Future<void> _updateAchievements(
+    int score,
+    int totalQuestions,
+    String category,
+    int completionTimeInSeconds,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    // Update total quizzes completed
+    final totalQuizzesCompleted =
+        (prefs.getInt('totalQuizzesCompleted') ?? 0) + 1;
+    await prefs.setInt('totalQuizzesCompleted', totalQuizzesCompleted);
+
+    // Update perfect scores
+    if (score == totalQuestions) {
+      final perfectScores = (prefs.getInt('perfectScores') ?? 0) + 1;
+      await prefs.setInt('perfectScores', perfectScores);
+    }
+
+    // Update categories completed
+    final categoriesCompleted =
+        prefs.getStringList('categoriesCompleted') ?? [];
+    if (!categoriesCompleted.contains(category)) {
+      categoriesCompleted.add(category);
+      await prefs.setStringList('categoriesCompleted', categoriesCompleted);
+    }
+
+    // Update consecutive correct answers
+    final currentConsecutive = prefs.getInt('consecutiveCorrectAnswers') ?? 0;
+    final newConsecutive = currentConsecutive + score;
+    await prefs.setInt('consecutiveCorrectAnswers', newConsecutive);
+
+    // Update fastest completion time (if applicable)
+    final fastestTimeKey = 'fastestTime_$category';
+    final currentFastestTime = prefs.getInt(fastestTimeKey);
+    if (currentFastestTime == null ||
+        completionTimeInSeconds < currentFastestTime) {
+      await prefs.setInt(fastestTimeKey, completionTimeInSeconds);
+    }
   }
 
   void answerQuestion(int index) async {
@@ -73,11 +117,24 @@ class _QuizScreenState extends State<QuizScreen> {
           _loadCurrentQuestion();
         });
       } else {
+        // Calculate completion time
+        final completionTime = DateTime.now()
+            .difference(_quizStartTime!)
+            .inSeconds;
+
         NotificationHelper.showResultNotification(
           context,
           score,
           widget.questions.length,
           widget.userName,
+        );
+
+        // Update achievements
+        _updateAchievements(
+          score,
+          widget.questions.length,
+          widget.questions[0].category,
+          completionTime,
         );
 
         Future.delayed(const Duration(milliseconds: 1000), () {
@@ -296,7 +353,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                     ),
                     Text(
-                      "$score", // Sekarang akan menampilkan skor yang benar
+                      "$score",
                       style: GoogleFonts.poppins(
                         color: Colors.white,
                         fontSize: 24,

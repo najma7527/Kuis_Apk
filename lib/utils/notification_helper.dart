@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationHelper {
+  static Future<bool> _getNotificationSetting() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getBool('notifications') ?? true;
+  }
+
   static void showCorrectNotification(
     BuildContext context,
     String correctAnswer,
     String userName,
-  ) {
+  ) async {
+    final showNotifications = await _getNotificationSetting();
+    if (!showNotifications) return;
+
     _showNotification(
       context,
       "✅ BENAR!",
@@ -19,7 +28,10 @@ class NotificationHelper {
     BuildContext context,
     String correctAnswer,
     String userName,
-  ) {
+  ) async {
+    final showNotifications = await _getNotificationSetting();
+    if (!showNotifications) return;
+
     _showNotification(
       context,
       "❌ SALAH",
@@ -34,7 +46,10 @@ class NotificationHelper {
     int score,
     int total,
     String userName,
-  ) {
+  ) async {
+    final showNotifications = await _getNotificationSetting();
+    if (!showNotifications) return;
+
     final percentage = (score / total * 100).round();
     String title;
     String message;
