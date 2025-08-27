@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'kuis_screen.dart';
 import 'kuis_data.dart';
 import 'screens/nama_input_screen.dart';
-// Import halaman-halaman baru
 import 'about_screen.dart';
 import 'categories_screen.dart';
 import 'help_screen.dart';

@@ -1,6 +1,7 @@
 // File: about_screen.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'kuis_data.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -114,7 +115,7 @@ class AboutScreen extends StatelessWidget {
                     _buildInfoItem(
                       Icons.category,
                       "Total Soal",
-                      "100 Pertanyaan",
+                      "${questions.length} Pertanyaan",
                     ),
                   ],
                 ),
