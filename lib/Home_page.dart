@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(171, 17, 5, 126),
+                backgroundColor: const Color.fromARGB(171, 26, 8, 187),
                 shadowColor: const Color.fromARGB(171, 17, 5, 126),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(
@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(171, 26, 8, 187),
-                shadowColor: const Color.fromARGB(134, 22, 20, 163),
+                shadowColor: const Color.fromARGB(171, 17, 5, 126),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
