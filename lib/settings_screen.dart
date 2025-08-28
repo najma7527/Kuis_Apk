@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'about_screen.dart';
+import 'help_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -13,9 +15,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _soundEffects = true;
-  bool _notifications = true;
-  bool _darkMode = true;
+  // bool _soundEffects = true;
+  // bool _notifications = true;
+  // bool _darkMode = true;
 
   @override
   void initState() {
@@ -69,6 +71,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
+  // 👉 Navigasi ke halaman Tentang
+  void _goToAbout() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AboutScreen()),
+    );
+  }
+
+  // 👉 Navigasi ke halaman Bantuan
+  void _goToHelp() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const HelpScreen()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,27 +136,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(color: Colors.blueGrey),
                     _buildActionItem(Icons.email, "Hubungi Kami", _contactUs),
+                    const Divider(color: Colors.blueGrey),
+                    _buildActionItem(Icons.help, "Bantuan", _goToHelp),
+                    const Divider(color: Colors.blueGrey),
+                    _buildActionItem(Icons.info, "Tentang", _goToAbout),
                   ],
                 ),
               ),
               const SizedBox(height: 30),
-
-              // Tombol Reset
-              ElevatedButton(
-                onPressed: _resetSettings,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(171, 187, 8, 8),
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                    vertical: 12,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text("Reset Pengaturan"),
-              ),
             ],
           ),
         ),

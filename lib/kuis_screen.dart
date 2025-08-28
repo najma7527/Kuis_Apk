@@ -237,8 +237,11 @@ class _QuizScreenState extends State<QuizScreen> {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF2C5282),
                   borderRadius: BorderRadius.circular(20),
+                  image: const DecorationImage(
+                    image: AssetImage("assets/1.jpg"),
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 child: Text(
                   question.category,
