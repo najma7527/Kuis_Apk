@@ -179,6 +179,34 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF0A1E3C),
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () async {
+            final shouldExit = await showDialog<bool>(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text("Konfirmasi"),
+                content: const Text(
+                  "Apakah kamu yakin ingin keluar dari kuis?",
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, false),
+                    child: const Text("Batal"),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, true),
+                    child: const Text("Ya, Keluar"),
+                  ),
+                ],
+              ),
+            );
+
+            if (shouldExit == true) {
+              Navigator.pop(context);
+            }
+          },
+        ),
         title: Text(
           "SOAL ${currentQuestionIndex + 1}/${widget.questions.length}",
           style: GoogleFonts.poppins(
@@ -190,6 +218,7 @@ class _QuizScreenState extends State<QuizScreen> {
         elevation: 0,
         centerTitle: true,
       ),
+
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -232,6 +261,9 @@ class _QuizScreenState extends State<QuizScreen> {
               const SizedBox(height: 20),
 
               Container(
+                height: 50,
+                width: 100,
+
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
                   vertical: 8,
@@ -239,19 +271,19 @@ class _QuizScreenState extends State<QuizScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: const DecorationImage(
-                    image: AssetImage("assets/1.jpg"),
+                    image: AssetImage("assets/1.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
-                child: Text(
-                  question.category,
-                  style: GoogleFonts.poppins(
-                    color: Colors.blue[100],
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
+                // child: Text(
+                //   question.category,
+                //   style: GoogleFonts.poppins(
+                //     color: Colors.blue[100],
+                //     fontSize: 12,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                //   textAlign: TextAlign.center,
+                // ),
               ),
 
               const SizedBox(height: 30),
