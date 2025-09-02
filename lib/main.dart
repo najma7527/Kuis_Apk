@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'splash_screen.dart';
+import 'login_page.dart';
+import 'register_page.dart';
+import 'profil_page.dart';
 import 'Home_page.dart';
 import 'categories_screen.dart';
 import 'achievements_screen.dart';
 import 'settings_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      home: const MainScreen(),
+      home: SplashScreen(),
     );
   }
 }
@@ -37,10 +41,10 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    const HomePage(),
-    const CategoriesScreen(),
-    const AchievementsScreen(),
-    const SettingsScreen(),
+    HomePage(),
+    CategoriesScreen(),
+    AchievementsScreen(),
+    SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -76,6 +80,7 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.settings),
               label: 'Pengaturan',
             ),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.blue[200],

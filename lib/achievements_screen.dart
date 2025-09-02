@@ -138,7 +138,7 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             children: [
               Container(

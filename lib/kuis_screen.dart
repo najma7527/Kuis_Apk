@@ -181,20 +181,30 @@ class _QuizScreenState extends State<QuizScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
+          color: Colors.white,
           onPressed: () async {
             final shouldExit = await showDialog<bool>(
               context: context,
               builder: (context) => AlertDialog(
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 title: const Text("Konfirmasi"),
                 content: const Text(
-                  "Apakah kamu yakin ingin keluar dari kuis?",
+                  "Apakah Anda yakin ingin keluar? Skor Anda tidak akan disimpan.",
                 ),
                 actions: [
                   TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                    ),
                     onPressed: () => Navigator.pop(context, false),
                     child: const Text("Batal"),
                   ),
                   TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      foregroundColor: Colors.white,
+                    ),
                     onPressed: () => Navigator.pop(context, true),
                     child: const Text("Ya, Keluar"),
                   ),
@@ -372,6 +382,7 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
 
               Container(
+                margin: const EdgeInsets.only(top: 20),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: const Color(0xFF1A3B6C),

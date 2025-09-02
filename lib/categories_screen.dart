@@ -53,7 +53,7 @@ class CategoriesScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: ListView.builder(
             itemCount: categories.length,
             itemBuilder: (context, index) {

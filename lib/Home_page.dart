@@ -51,6 +51,7 @@ class HomePage extends StatelessWidget {
                   fontSize: 42,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  decoration: TextDecoration.none,
                 ),
               ),
             ),
@@ -59,7 +60,11 @@ class HomePage extends StatelessWidget {
 
             Text(
               "${questions.length} Pertanyaan Menantang",
-              style: GoogleFonts.poppins(fontSize: 16, color: Colors.blue[200]),
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+                color: Colors.blue[200],
+                decoration: TextDecoration.none,
+              ),
             ),
 
             const SizedBox(height: 50),
