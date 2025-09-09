@@ -7,6 +7,7 @@ import 'login_page.dart';
 import 'constants.dart';
 import 'help_screen.dart';
 import 'settings_screen.dart';
+import 'dart:convert';
 
 class ProfilPage extends StatefulWidget {
   @override
@@ -28,13 +29,16 @@ class _ProfilPageState extends State<ProfilPage> {
     final pickedFile = await _picker.pickImage(source: source);
 
     if (pickedFile != null) {
+      final bytes = await pickedFile.readAsBytes();
+      final base64Image = base64Encode(bytes);
+
       setState(() {
         _profileImage = File(pickedFile.path);
       });
 
-      // Simpan path ke SharedPreferences biar tidak hilang setelah restart
+      // Simpan base64 ke SharedPreferences
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('profileImagePath', pickedFile.path);
+      await prefs.setString('profileImageBase64', base64Image);
     }
   }
 
@@ -55,15 +59,26 @@ class _ProfilPageState extends State<ProfilPage> {
         prefs.getString(SharedPrefKeys.userEmail) ?? 'user@example.com';
     final userPassword = prefs.getString('userPassword') ?? '';
     print('Loaded password: $userPassword');
-    final profileImagePath = prefs.getString('profileImagePath');
+    final base64Image = prefs.getString('profileImageBase64');
 
-    File? imageFile;
-    if (profileImagePath != null) {
-      imageFile = File(profileImagePath);
-      if (await imageFile.exists()) {
-        _profileImage = imageFile;
-      }
+    if (base64Image != null) {
+      final bytes = base64Decode(base64Image);
+      final tempDir = Directory.systemTemp;
+      final file = await File(
+        '${tempDir.path}/profile.png',
+      ).writeAsBytes(bytes);
+
+      setState(() {
+        _profileImage = file;
+      });
     }
+
+    setState(() {
+      _nameController.text = userName;
+      _emailController.text = userEmail;
+      _passwordController.text = userPassword;
+      _isLoading = false;
+    });
 
     setState(() {
       _nameController.text = userName;
