@@ -29,9 +29,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
       // Simpan data ke SharedPreferences
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('name', _nameController.text);
-      await prefs.setString('email', _emailController.text);
-      await prefs.setString('password', _passwordController.text);
+      await prefs.setString('userName', _nameController.text);
+      await prefs.setString('userEmail', _emailController.text);
+      await prefs.setString('userPassword', _passwordController.text);
 
       setState(() {
         _isLoading = false;
@@ -121,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (value == null || value.isEmpty) {
                               return 'Email tidak boleh kosong';
                             }
-                            if (!value.contains('@')) {
+                            if (!value.contains('@gmail.com')) {
                               return 'Email tidak valid';
                             }
                             return null;

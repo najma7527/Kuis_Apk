@@ -28,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
       await Future.delayed(Duration(seconds: 2));
 
       final prefs = await SharedPreferences.getInstance();
-      String? savedEmail = prefs.getString('email');
-      String? savedPassword = prefs.getString('password');
+      String? savedEmail = prefs.getString('userEmail');
+      String? savedPassword = prefs.getString('userPassword');
 
       if (_emailController.text == savedEmail &&
           _passwordController.text == savedPassword) {
@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (value == null || value.isEmpty) {
                               return 'Email tidak boleh kosong';
                             }
-                            if (!value.contains('@')) {
+                            if (!value.contains('@gmail.com')) {
                               return 'Email tidak valid';
                             }
                             return null;
@@ -218,5 +218,21 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+    // Fungsi logout
+    Future<void> _logout(BuildContext context) async {
+      final prefs = await SharedPreferences.getInstance();
+
+      // Ubah status login jadi false
+      await prefs.setBool('isLoggedIn', false);
+
+      // Tidak menghapus email & password
+      // jadi nanti kalau login lagi, user masih bisa pakai data yg tersimpan
+
+      // Arahkan balik ke halaman login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    }
   }
 }

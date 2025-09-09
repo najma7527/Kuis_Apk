@@ -8,6 +8,7 @@ import 'Home_page.dart';
 import 'categories_screen.dart';
 import 'achievements_screen.dart';
 import 'settings_screen.dart';
+import 'profil_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +27,11 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
       home: SplashScreen(),
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/register': (context) => RegisterPage(),
+        '/main': (context) => const MainScreen(),
+      },
     );
   }
 }
@@ -44,7 +50,7 @@ class _MainScreenState extends State<MainScreen> {
     HomePage(),
     CategoriesScreen(),
     AchievementsScreen(),
-    SettingsScreen(),
+    ProfilPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -75,10 +81,6 @@ class _MainScreenState extends State<MainScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.emoji_events),
               label: 'Pencapaian',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Pengaturan',
             ),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
           ],

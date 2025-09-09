@@ -102,10 +102,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: const Color(0xFF1A3B6C),
         elevation: 0,
         centerTitle: true,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back, color: Colors.white),
-        //   onPressed: () => Navigator.pop(context),
-        // ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -136,8 +136,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     const Divider(color: Colors.blueGrey),
                     _buildActionItem(Icons.email, "Hubungi Kami", _contactUs),
-                    const Divider(color: Colors.blueGrey),
-                    _buildActionItem(Icons.help, "Bantuan", _goToHelp),
                     const Divider(color: Colors.blueGrey),
                     _buildActionItem(Icons.info, "Tentang", _goToAbout),
                   ],
