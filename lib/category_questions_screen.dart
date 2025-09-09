@@ -1,8 +1,8 @@
-// File: category_questions_screen.dart (File baru)
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'kuis_data.dart';
-import 'screens/nama_input_screen.dart';
+import 'kuis_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CategoryQuestionsScreen extends StatelessWidget {
   final String category;
@@ -13,6 +13,12 @@ class CategoryQuestionsScreen extends StatelessWidget {
     required this.category,
     required this.questions,
   });
+
+  // Fungsi untuk mendapatkan nama pengguna dari registrasi
+  Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userName') ?? 'Pemain';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,13 +71,16 @@ class CategoryQuestionsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        // Dapatkan nama dari registrasi
+                        final userName = await _getUserName();
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NameInputScreen(
+                            builder: (context) => QuizScreen(
                               questions: questions,
-                              isQuickQuiz: false,
+                              userName: userName,
                             ),
                           ),
                         );

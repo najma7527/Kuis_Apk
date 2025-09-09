@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'kuis_data.dart';
-import 'screens/nama_input_screen.dart';
+import 'kuis_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  // Fungsi untuk mendapatkan nama pengguna dari registrasi
+  Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userName') ??
+        'Pemain'; // Default ke 'Pemain' jika tidak ada
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +78,16 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 50),
 
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                // Dapatkan nama dari registrasi
+                final userName = await _getUserName();
+
+                // Navigasi langsung ke halaman kuis
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NameInputScreen(
-                      questions: questions,
-                      isQuickQuiz: false,
-                    ),
+                    builder: (context) =>
+                        QuizScreen(questions: questions, userName: userName),
                   ),
                 );
               },
@@ -99,14 +109,18 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
 
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                // Dapatkan nama dari registrasi
+                final userName = await _getUserName();
                 final randomQuestions = getRandomQuestions(5);
+
+                // Navigasi langsung ke halaman kuis
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NameInputScreen(
+                    builder: (context) => QuizScreen(
                       questions: randomQuestions,
-                      isQuickQuiz: true,
+                      userName: userName,
                     ),
                   ),
                 );

@@ -144,7 +144,7 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1E3A8A),
+                  color: const Color.fromRGBO(30, 58, 138, 1),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(

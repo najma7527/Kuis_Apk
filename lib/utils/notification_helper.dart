@@ -7,13 +7,19 @@ class NotificationHelper {
     return prefs.getBool('notifications') ?? true;
   }
 
+  static Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userName') ?? 'Pemain';
+  }
+
   static void showCorrectNotification(
     BuildContext context,
     String correctAnswer,
-    String userName,
   ) async {
     final showNotifications = await _getNotificationSetting();
     if (!showNotifications) return;
+
+    final userName = await _getUserName(); // Baca nama di sini
 
     _showNotification(
       context,
@@ -27,15 +33,16 @@ class NotificationHelper {
   static void showWrongNotification(
     BuildContext context,
     String correctAnswer,
-    String userName,
   ) async {
     final showNotifications = await _getNotificationSetting();
     if (!showNotifications) return;
 
+    final userName = await _getUserName(); // Baca nama di sini
+
     _showNotification(
       context,
       "❌ SALAH",
-      "$userName, jawaban benar: $correctAnswer , ayo belajar lebuh keras lagi",
+      "$userName, jawaban benar: $correctAnswer , ayo belajar lebih keras lagi",
       Colors.red,
       Icons.error,
     );
@@ -45,11 +52,11 @@ class NotificationHelper {
     BuildContext context,
     int score,
     int total,
-    String userName,
   ) async {
     final showNotifications = await _getNotificationSetting();
     if (!showNotifications) return;
 
+    final userName = await _getUserName(); // Baca nama di sini
     final percentage = (score / total * 100).round();
     String title;
     String message;

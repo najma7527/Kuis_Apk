@@ -7,12 +7,14 @@ import 'utils/notification_helper.dart';
 
 class QuizScreen extends StatefulWidget {
   final List<Question> questions;
+  final bool isQuickQuiz;
   final String userName;
 
   const QuizScreen({
     super.key,
     required this.questions,
-    this.userName = 'Pemain',
+    this.isQuickQuiz = false,
+    required this.userName,
   });
 
   @override
@@ -27,12 +29,22 @@ class _QuizScreenState extends State<QuizScreen> {
   List<String> currentOptions = [];
   int currentCorrectIndex = 0;
   DateTime? _quizStartTime;
+  String userName = 'Pemain'; // Default name
 
   @override
   void initState() {
     super.initState();
     _quizStartTime = DateTime.now();
     _loadCurrentQuestion();
+    _loadUserName(); // Load username from registration process
+  }
+
+  // Function to get username from registration process (SharedPreferences)
+  Future<void> _loadUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userName = prefs.getString('user_name') ?? 'Pemain';
+    });
   }
 
   void _loadCurrentQuestion() {
@@ -98,13 +110,11 @@ class _QuizScreenState extends State<QuizScreen> {
         NotificationHelper.showCorrectNotification(
           context,
           currentOptions[currentCorrectIndex],
-          widget.userName,
         );
       } else {
         NotificationHelper.showWrongNotification(
           context,
-          currentOptions[currentCorrectIndex],
-          widget.userName,
+          currentOptions[currentCorrectIndex], // Use the name from registration
         );
       }
     });
@@ -125,8 +135,7 @@ class _QuizScreenState extends State<QuizScreen> {
         NotificationHelper.showResultNotification(
           context,
           score,
-          widget.questions.length,
-          widget.userName,
+          widget.questions.length, // Use the name from registration
         );
 
         // Update achievements
@@ -285,15 +294,6 @@ class _QuizScreenState extends State<QuizScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // child: Text(
-                //   question.category,
-                //   style: GoogleFonts.poppins(
-                //     color: Colors.blue[100],
-                //     fontSize: 12,
-                //     fontWeight: FontWeight.w500,
-                //   ),
-                //   textAlign: TextAlign.center,
-                // ),
               ),
 
               const SizedBox(height: 30),
@@ -518,7 +518,10 @@ class _QuizScreenState extends State<QuizScreen> {
                 const SizedBox(height: 30),
 
                 Text(
-                  _getResultMessage(percentage, widget.userName),
+                  _getResultMessage(
+                    percentage,
+                    userName,
+                  ), // Use the name from registration
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     color: Colors.blue[100],

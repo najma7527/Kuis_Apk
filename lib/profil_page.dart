@@ -214,7 +214,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                 width: 32,
                                 height: 32,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFF1E3A8A),
+                                  color: Color.fromRGBO(30, 58, 138, 1),
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: Colors.white,
@@ -282,7 +282,7 @@ class _ProfilPageState extends State<ProfilPage> {
                       ),
                       filled: true,
                       fillColor: _isEditing
-                          ? Color(0xFF1E3A8A).withOpacity(0.5)
+                          ? Color.fromRGBO(30, 58, 138, 1).withOpacity(0.5)
                           : Color(0xFF1E3A8A).withOpacity(0.3),
                       prefixIcon: Icon(Icons.lock, color: Colors.white70),
                       suffixIcon: _isEditing
