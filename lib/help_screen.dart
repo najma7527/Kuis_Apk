@@ -51,27 +51,23 @@ class HelpScreen extends StatelessWidget {
                   children: [
                     _buildInstructionStep(
                       1,
-                      "Pilih mode kuis: Seluruh soal atau kuis cepat (5 soal)",
+                      "Pilih mode kuis: Seluruh soal, kuis cepat (5 soal), atau berdasarkan kategori",
                     ),
+                    _buildInstructionStep(2, "Baca pertanyaan dengan seksama"),
                     _buildInstructionStep(
-                      2,
-                      "Masukkan nama Anda atau lewati untuk bermain sebagai 'Pemain'",
-                    ),
-                    _buildInstructionStep(3, "Baca pertanyaan dengan seksama"),
-                    _buildInstructionStep(
-                      4,
+                      3,
                       "Pilih jawaban yang menurut Anda benar",
                     ),
                     _buildInstructionStep(
-                      5,
+                      4,
                       "Lihat notifikasi yang muncul untuk mengetahui jawaban benar/salah",
                     ),
                     _buildInstructionStep(
-                      6,
+                      5,
                       "Lanjut ke soal berikutnya hingga selesai",
                     ),
                     _buildInstructionStep(
-                      7,
+                      6,
                       "Lihat skor akhir dan persentase jawaban benar",
                     ),
                   ],

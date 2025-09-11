@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "924774212219",
+    "project_id": "kuisapk",
+    "storage_bucket": "kuisapk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924774212219:android:08bc46afed990070f8b8de",
+        "android_client_info": {
+          "package_name": "com.example.kuis_apk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF5q0xO2oQKZVjo2RIOBC-2VfqGMTAoBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

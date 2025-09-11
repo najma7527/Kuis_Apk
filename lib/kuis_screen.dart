@@ -233,7 +233,7 @@ class _QuizScreenState extends State<QuizScreen> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: const Color(0xFF1A3B6C),
+        backgroundColor: const Color.fromRGBO(26, 59, 108, 1),
         elevation: 0,
         centerTitle: true,
       ),
@@ -301,7 +301,7 @@ class _QuizScreenState extends State<QuizScreen> {
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF1E3A8A),
+                  color: const Color.fromRGBO(30, 58, 138, 1),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -520,7 +520,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 Text(
                   _getResultMessage(
                     percentage,
-                    userName,
+                    widget.userName,
                   ), // Use the name from registration
                   style: GoogleFonts.poppins(
                     fontSize: 18,
@@ -582,10 +582,12 @@ class _QuizScreenState extends State<QuizScreen> {
   String _getResultMessage(int percentage, String userName) {
     if (percentage >= 90)
       return "Luar biasa! $userName Kamu benar-benar menguasai materi! 🎯";
-    if (percentage >= 75) return "Hebat! Hasil yang sangat memuaskan! ⭐";
+    if (percentage >= 75)
+      return "Kamu hebat $userName ! Hasil yang sangat memuaskan! ⭐";
     if (percentage >= 60)
-      return "Bagus! semangat $userName! ayo belajar lagi untuk hasil yang lebih baik! 👍";
-    if (percentage >= 40) return "Lumayan! Terus belajar dan berlatih! 📚";
+      return "Bagus! semangat terus $userName! ayo belajar lagi untuk hasil yang lebih baik! 👍";
+    if (percentage >= 40)
+      return "Lumayan! $userName Terus belajar dan berlatih untuk jadi lebih baik! 📚";
     return "Jangan menyerah $userName! Setiap kegagalan adalah pelajaran yang menjadikan kamu lebih baik! 💪";
   }
 }
