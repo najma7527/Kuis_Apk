@@ -10,8 +10,7 @@ class HomePage extends StatelessWidget {
   // Fungsi untuk mendapatkan nama pengguna dari registrasi
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('userName') ??
-        'Pemain'; // Default ke 'Pemain' jika tidak ada
+    return prefs.getString('userName') ?? 'Pemain';
   }
 
   @override

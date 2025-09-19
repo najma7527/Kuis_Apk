@@ -476,11 +476,16 @@ class _QuizScreenState extends State<QuizScreen> {
                     vertical: 20,
                   ),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1E3A8A),
+                    color: const Color.fromRGBO(30, 58, 138, 1),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.blue.withOpacity(0.3),
+                        color: const Color.fromRGBO(
+                          33,
+                          150,
+                          243,
+                          1,
+                        ).withOpacity(0.3),
                         blurRadius: 15,
                         offset: const Offset(0, 5),
                       ),
@@ -535,7 +540,10 @@ class _QuizScreenState extends State<QuizScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
-                      colors: [Color(0xFF667EEA), Color(0xFF764BA2)],
+                      colors: [
+                        Color.fromRGBO(102, 126, 234, 1),
+                        Color.fromRGBO(118, 75, 162, 1),
+                      ],
                     ),
                     borderRadius: BorderRadius.circular(25),
                     boxShadow: [

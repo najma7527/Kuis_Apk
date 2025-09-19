@@ -556,7 +556,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       labelText: 'Password',
                       labelStyle: TextStyle(color: Colors.white70),
@@ -596,7 +596,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   SizedBox(height: 30),
                   TextFormField(
                     controller: _emailController,
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(color: Colors.white70),
@@ -609,6 +609,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           color: Colors.white54,
                           width: 1.0,
                         ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 2.0),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       filled: true,

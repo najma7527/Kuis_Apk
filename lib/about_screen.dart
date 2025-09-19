@@ -5,7 +5,6 @@ import 'kuis_data.dart';
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
-  // definisi warna utama
   static const Color primaryColor = Color(0xFF1A3B6C);
   static const Color backgroundColor = Color(0xFF0A1E3C);
 
